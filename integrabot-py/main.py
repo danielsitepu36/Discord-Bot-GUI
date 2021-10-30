@@ -1,3 +1,4 @@
+#this is a Python project
 import discord
 import os
 from datetime import datetime
