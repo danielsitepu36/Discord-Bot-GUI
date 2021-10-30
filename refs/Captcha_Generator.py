@@ -1,8 +1,7 @@
 """
 Instructions
-1. Install captcha: pip install captcha
-2. download fonts and update the path in code
-3. run the code
+Run pip install -r requirements.txt (Python 2), 
+or pip3 install -r requirements.txt (Python 3)
 """
 
 from io import BytesIO
@@ -12,7 +11,7 @@ from tkinter import messagebox
 import string
 from captcha.image import ImageCaptcha
 
-image = ImageCaptcha(fonts=['C:/Users/Administrator/Downloads/ChelseaMarketsr.ttf', 'C:/Users/Administrator/Downloads/DejaVuSanssr.ttf'])
+image = ImageCaptcha(fonts=['Fonts/ChelseaMarket-Regular.ttf', 'Fonts/DejaVuSerifCondensed-Italic.ttf'])
 
 random=str(randint(100000,999999))
 data = image.generate(random)
@@ -51,6 +50,3 @@ t1.pack()
 b1.pack()
 b2.pack()
 root.mainloop()
-
-
-
