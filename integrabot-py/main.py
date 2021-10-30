@@ -8,6 +8,7 @@ import re
 import random
 from dotenv import load_dotenv
 load_dotenv()
+import math
 
 client = discord.Client()
 
@@ -37,7 +38,10 @@ def get_meme():
     json_data = json.loads(response.text)
     return(json_data["memes"][0]["url"])
 
-
+def get_ping(createdTimestamp):
+    ping_val = "🏓Latency is {}ms. API Latency is {}ms".format(datetime.now() - createdTimestamp, math.round(client.ws.ping))
+    return(ping_val)
+    
 # print(get_meme())
 
 @client.event
@@ -58,7 +62,8 @@ async def on_message(message):
         1) !wib - WIB Time \n
         2) !quote - Tell me a quote! \n
         3) !joke - Tell me a joke! \n
-        4) !meme - Send me a meme!
+        4) !meme - Send me a meme! \n
+        5) !ping - To get current server latency
         """)
 
     if message.content.startswith('!wib'):
@@ -76,6 +81,10 @@ async def on_message(message):
     if message.content.startswith('!meme'):
         meme = get_meme()
         await message.channel.send(meme)
+        
+    if message.content.startswith('!ping'):
+        ping = get_ping(message.createdTimestamp)
+        await message.channel.send(ping)
 
 # print(os.getenv('TOKEN'))
 client.run(os.getenv('TOKEN'))
